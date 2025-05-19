@@ -20,7 +20,8 @@ def computeSubhypergraphWithGreaterMAF(
         scenario_name: str,
         time_limit_iteration: int,
         max_steps = 1000,
-        name_nodes = ""
+        name_nodes = "",
+        accuracy = 1e-3
     ) -> None:
     """
     Calculate the amplification factor of subgraphs and log the results to a file.
@@ -31,6 +32,7 @@ def computeSubhypergraphWithGreaterMAF(
         time_limit_iteration: Time limit for each algorithm iteration.
         max_steps: The maximum number of iterations.
         scenario_name: Name for the output file.
+        accuracy: Precision of the solution
     """
     
     NULL_THRESHOLD = 0.1  # Threshold for determining null rows/columns
@@ -65,7 +67,7 @@ def computeSubhypergraphWithGreaterMAF(
     for component in component_dicts:
         try:
             solution = computeMAFinSubhypergraph(
-                component["output"], component["input"], max_steps, time_limit_iteration
+                component["output"], component["input"], max_steps, time_limit_iteration, accuracy
             )
         except Exception as e:
             raise RuntimeError(f"Error in solving subhypergraph: {e}")
