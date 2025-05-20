@@ -213,8 +213,8 @@ def computeMAFinSubhypergraph(output_matrix, input_matrix, t_max, time_limit_ite
         model.addConstrs(
             (gb.quicksum(input_matrix[v, a] * intensities[a] 
                           for a in arcs) 
-            >= is_active_arc[v]
-            for v in nodes 
+            >= is_self_amplifying[v]
+            for v in nodes
             if sum(input_matrix[v, :]) > 0),
             name = "name2")
         #
