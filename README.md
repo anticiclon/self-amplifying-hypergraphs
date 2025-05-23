@@ -30,9 +30,7 @@ The repository provides implementations of three core algorithms discussed in th
 
 #### Function: `computeSubhypergraphWithGreaterMAF(input_matrix, output_matrix, scenario_name, time_limit_iteration, max_steps, name_nodes, accuracy)`
 
-- Implements **Algorithm 2**, including:
-  - Self-sufficiency simplification.
-  - Decomposition into independent components.
+- Implements **Algorithm 2**:
 - Input matrices should be placed in the `scenarios/` folder.
 - Output is saved in `.txt` files within the `output/` folder.
 - Example usage: See [`main_algorithm_2.py`](./main_algorithm_2.py) for applications to the **Formose** and **E. coli** scenarios.
