@@ -79,9 +79,11 @@ def computeAmplificationFactor(output_matrix, input_matrix, max_steps, time_limi
     start_time = time.time()
     results_dict = {}
 
-    counter = 1
+    # counter = 1
+    cumulative_time = 0
     while not stop:
-        print(counter, previous_alpha)
+        # print(counter, previous_alpha)
+
         iteration_start_time = time.time()
         
         x_t, alphabar, num_vars, num_constraints = computeAmplificationFactorFixed(previous_alpha, time_limit_iteration)
@@ -89,7 +91,11 @@ def computeAmplificationFactor(output_matrix, input_matrix, max_steps, time_limi
         # Vectorized alpha calculation
         alpha_t = np.min(np.sum(output_matrix * x_t, axis=1) / np.maximum(np.sum(input_matrix * x_t, axis=1), 1e-15))
         
-        counter = counter + 1
+        # counter = counter + 1
+
+        iteration_end_time = time.time()
+        it_time = iteration_end_time - iteration_start_time
+        cumulative_time = cumulative_time + it_time
 
         results_dict[step] = {
             "x": x_t,
@@ -98,8 +104,11 @@ def computeAmplificationFactor(output_matrix, input_matrix, max_steps, time_limi
             "constraints": num_constraints,
             "step": step,
             "alpha": alpha_t,
-            "time": time.time() - iteration_start_time
+            "time": it_time
         }
+        
+        print("step:", step + 1, "alpha:", round(previous_alpha, 3), "it_time:", round(it_time, 3), "total_time:", round(cumulative_time, 3))
+
 
         if (np.abs(alphabar) < accuracy or step >= max_steps or np.abs(alpha_old - alpha_t) < accuracy):
             stop = True
