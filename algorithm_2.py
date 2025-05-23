@@ -211,7 +211,6 @@ def computeMAFinSubhypergraph(output_matrix, input_matrix, t_max, time_limit_ite
     
         # Extract solution
         optimal_intensities = np.array([x[r].X for r in range(num_arcs)])
-        print(optimal_intensities)
         
         optimal_amplification_factor = alpha.X
         active_nodes = [v for v in range(num_nodes) if y[v].X > 0.5]

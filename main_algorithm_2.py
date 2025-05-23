@@ -8,8 +8,29 @@ Created on Thu Dec 26 01:03:40 2024
 import algorithm_2 as algo
 import auxiliary_functions as aux
 import pandas as pd
+import numpy as np
+
 
 def main():
+    
+    
+    
+    # test
+    # -------------------------------------------------------------------------
+    input_matrix = np.array([[2., 0., 0., 0.],
+                              [0., 1., 0., 0.],
+                              [2., 0., 1., 0.],
+                              [0., 0., 0., 1.]])
+    
+    output_matrix = np.array([[0., 1., 0., 1.],
+                              [1., 0., 1., 0.],
+                              [0., 1., 0., 1.],
+                              [0., 0., 1., 0.]])
+    time_limit_iteration = 1000
+    nameScenario = "test_1"
+    algo.computeSubhypergraphWithGreaterMAF(input_matrix, output_matrix, nameScenario, time_limit_iteration)
+    # -------------------------------------------------------------------------
+
 
     # Formose
     # -------------------------------------------------------------------------
